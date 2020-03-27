@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv=" X-UA-Compatible" content="ie=edge">
+
+
+    <!-- <meta name="theme-color" content="#ffbe5b" />
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ปัดปิ้ว | PadPiw">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="description" content="ปัดปิ้ว PadPiw เกมฝึกสมอง ประลองนิ้ว บริหารนิ้วมือ"> -->
+
+    <title>Habitrack</title>
+
+    <!-- iOS Homescreen icon -->
+
+
+    <!-- iOS Splash Screen -->
+
+
+    <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Mali&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: white;
+            font-family: 'Mali', cursive;
+            /* background-image: url("image/bg.png"); */
+            background: #f7bfb1;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        .navbar {
+            /* display: inline-block;
+            list-style-type: none; */
+            background: #b6989c;
+            /* #5e4aa5 */
+        }
+
+        .card-body {
+            background: white;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        td {
+            padding: 0 !important;
+        }
+
+        #day1 {
+            background: #bca8d3;
+        }
+
+        #day2 {
+            background: #ff7b6c;
+        }
+
+        #day3 {
+            background: #ffad93;
+        }
+
+        #day4 {
+            background: #ffe094;
+        }
+
+        #day5 {
+            background: #88cace;
+        }
+
+        #day6 {
+            background: #99d7ae;
+        }
+    </style>
+</head>
+
+<body class="color-yellow fixed-top">
+    <!-- navbar -->
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand text-white" href=".">
+            HABITRACK
+        </a>
+    </nav>
+    <div class="mb-3">
+
+    </div>
+    <!-- container -->
+    <div class="container-sm">
+        <div class="card">
+            <div class="card-body">
+                <h3 id="monthName" class="text-center mb-3"></h3>
+                <div>
+                    <table class="text-center" style="width: 100%;">
+                        <tr>
+                            <td class="text-center">จ</td>
+                            <td class="text-center">อ</td>
+                            <td class="text-center">พ</td>
+                            <td class="text-center">พ</td>
+                            <td class="text-center">ศ</td>
+                            <td class="text-center">ส</td>
+                            <td class="text-center">อ</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="table">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#modal2">วิธีดูสี</button>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body text-center">
+                        *จิ้มที่ตารางเพื่อทำการบันทึกพฤติกรรมได้เลยค่ะ*
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal choice -->
+    <div class="modal fade" id="modal1" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>สิ่งที่ควรทำ!</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice1')" id="choiceOne">
+                                    ทานอาหารเช้า
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice2')" id="choiceTwo">
+                                    นอนหลับเพียงพอ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice3')" id="choiceThree">
+                                    ดื่มน้ำเปล่ามากกว่า 8 แก้ว
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice4')" id="choiceFour">
+                                    ออกกำลังกาย
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice5')" id="choiceFive">
+                                    พักสายตาจากโซเชียล
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice6')" id="choiceSix">
+                                    ทานอาหารครบ 5 หมู่
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice7')" id="choiceSeven">
+                                    คิดบวก มองโลกในแง่ดี
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice8')" id="choiceEight">
+                                    ล้างมือบ่อยๆ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="last">
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice9')" id="choiceNine">
+                                    ขึ้นบันไดแทนการใช้ลิฟท์
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-body" onclick="choice('choice10')" id="choiceTen">
+                                    ไม่ดื่มน้ำหวาน น้ำอัดลม
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3">
+                        <button id="close" onclick="choice('close')" class="btn btn-danger" data-toggle="modal"
+                            data-dismiss="modal">ปิด</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header mb-3">
+                    <h5>วิธีดูสี</h5>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <div style="background: #bca8d3; width: 20px; height: 20px;">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <p>วันนี้คุณไม่ดูแลสุขภาพเลย</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <div style="background: #ff7b6c; width: 20px; height: 20px;">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <p>วันนี้คุณดูแลสุขภาพน้อยมากเลย</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <div style="background: #ffad93; width: 20px; height: 20px;">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <p>วันนี้คุณดูแลสุขภาพน้อย</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <div style="background: #ffe094; width: 20px; height: 20px;">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <p>วันนี้คุณดูแลสุขภาพได้ดีพอสมควร</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <div style="background: #88cace; width: 20px; height: 20px;">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <p>วันนี้คุณดูแลสุขภาพได้ดี</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <div style="background: #99d7ae; width: 20px; height: 20px;">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <p>วันนี้คุณดูแลสุขภาพได้ดีมากเลย</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- script -->
+    <script>
+        var count = 0;
+        var total_count = 0;
+        var check1 = 1;
+        var check2 = 1;
+        var check3 = 1;
+        var check4 = 1;
+        var check5 = 1;
+        var check6 = 1;
+        var check7 = 1;
+        var check8 = 1;
+        var check9 = 1;
+        var check10 = 1;
+        var now_id = null;
+
+        // add
+        function table_click(id) {
+            now_id = id
+        }
+
+        function reply_click(clicked_id) {
+            console.log(clicked_id);
+            color_id = document.getElementById(clicked_id)
+            console.log(color_id);
+            if (total_count == 10) {
+                color_id.style.background = "#bca8d3";
+            }
+            else if (total_count == 20 || total_count == 30) {
+                color_id.style.background = "#ff7b6c";
+            }
+            else if (total_count == 40 || total_count == 50) {
+                color_id.style.background = "#ffad93";
+            }
+            else if (total_count == 60 || total_count == 70) {
+                color_id.style.background = "#ffe094";
+            }
+            else if (total_count == 80 || total_count == 90) {
+                color_id.style.background = "#88cace";
+            }
+            if (total_count == 100) {
+                color_id.style.background = "#99d7ae";
+            }
+        }
+
+
+        function choice(number) {
+            choice1 = document.getElementById("choiceOne");
+            choice2 = document.getElementById("choiceTwo");
+            choice3 = document.getElementById("choiceThree");
+            choice4 = document.getElementById("choiceFour");
+            choice5 = document.getElementById("choiceFive");
+            choice6 = document.getElementById("choiceSix");
+            choice7 = document.getElementById("choiceSeven");
+            choice8 = document.getElementById("choiceEight");
+            choice9 = document.getElementById("choiceNine");
+            choice10 = document.getElementById("choiceTen");
+            close = document.getElementById("close")
+
+            if (number == "choice1") {
+                if (check1 % 2 == 0) {
+                    choice1.style.background = "white";
+                    choice1.style.color = "black";
+                    count -= 10;
+                    check1 += 1;
+                } else {
+                    choice1.style.background = "#7FB6A1";
+                    choice1.style.color = "white";
+                    count += 10;
+                    check1 += 1;
+                }
+            }
+            if (number == "choice2") {
+                if (check2 % 2 == 0) {
+                    choice2.style.background = "white";
+                    choice2.style.color = "black";
+                    count -= 10;
+                    check2 += 1;
+                } else {
+                    choice2.style.background = "#7FB6A1";
+                    choice2.style.color = "white";
+                    count += 10;
+                    check2 += 1;
+                }
+            }
+            if (number == "choice3") {
+                if (check3 % 2 == 0) {
+                    choice3.style.background = "white";
+                    choice3.style.color = "black";
+                    count -= 10;
+                    check3 += 1;
+                } else {
+                    choice3.style.background = "#7FB6A1";
+                    choice3.style.color = "white";
+                    count += 10;
+                    check3 += 1;
+                }
+            }
+            if (number == "choice4") {
+                if (check4 % 2 == 0) {
+                    choice4.style.background = "white";
+                    choice4.style.color = "black";
+                    count -= 10;
+                    check4 += 1;
+                } else {
+                    choice4.style.background = "#7FB6A1";
+                    choice4.style.color = "white";
+                    count += 10;
+                    check4 += 1;
+                }
+            }
+            if (number == "choice5") {
+                if (check5 % 2 == 0) {
+                    choice5.style.background = "white";
+                    choice5.style.color = "black";
+                    count -= 10;
+                    check5 += 1;
+                } else {
+                    choice5.style.background = "#7FB6A1";
+                    choice5.style.color = "white";
+                    count += 10;
+                    check5 += 1;
+                }
+            }
+            if (number == "choice6") {
+                if (check6 % 2 == 0) {
+                    choice6.style.background = "white";
+                    choice6.style.color = "black";
+                    count -= 10;
+                    check6 += 1;
+                } else {
+                    choice6.style.background = "#7FB6A1";
+                    choice6.style.color = "white";
+                    count += 10;
+                    check6 += 1;
+                }
+            }
+            if (number == "choice7") {
+                if (check7 % 2 == 0) {
+                    choice7.style.background = "white";
+                    choice7.style.color = "black";
+                    count -= 10;
+                    check7 += 1;
+                } else {
+                    choice7.style.background = "#7FB6A1";
+                    choice7.style.color = "white";
+                    count += 10;
+                    check7 += 1;
+                }
+            }
+            if (number == "choice8") {
+                if (check8 % 2 == 0) {
+                    choice8.style.background = "white";
+                    choice8.style.color = "black";
+                    count -= 10;
+                    check8 += 1;
+                } else {
+                    choice8.style.background = "#7FB6A1";
+                    choice8.style.color = "white";
+                    count += 10;
+                    check8 += 1;
+                }
+            }
+            if (number == "choice9") {
+                if (check9 % 2 == 0) {
+                    choice9.style.background = "white";
+                    choice9.style.color = "black";
+                    count -= 10;
+                    check9 += 1;
+                } else {
+                    choice9.style.background = "#7FB6A1";
+                    choice9.style.color = "white";
+                    count += 10;
+                    check9 += 1;
+                }
+            }
+            if (number == "choice10") {
+                if (check10 % 2 == 0) {
+                    choice10.style.background = "white";
+                    choice10.style.color = "black";
+                    count -= 10;
+                    check10 += 1;
+                } else {
+                    choice10.style.background = "#7FB6A1";
+                    choice10.style.color = "white";
+                    count += 10;
+                    check10 += 1;
+                }
+            }
+            if (number == "close") {
+                choice1.style.background = "white";
+                choice2.style.background = "white";
+                choice3.style.background = "white";
+                choice4.style.background = "white";
+                choice5.style.background = "white";
+                choice6.style.background = "white";
+                choice7.style.background = "white";
+                choice8.style.background = "white";
+                choice9.style.background = "white";
+                choice10.style.background = "white";
+                choice1.style.color = "black";
+                choice2.style.color = "black";
+                choice3.style.color = "black";
+                choice4.style.color = "black";
+                choice5.style.color = "black";
+                choice6.style.color = "black";
+                choice7.style.color = "black";
+                choice8.style.color = "black";
+                choice9.style.color = "black";
+                choice10.style.color = "black";
+                check1 = 1;
+                check2 = 1;
+                check3 = 1;
+                check4 = 1;
+                check5 = 1;
+                check6 = 1;
+                check7 = 1;
+                check8 = 1;
+                check9 = 1;
+                check10 = 1;
+                total_count = count;
+                count = 0;
+                reply_click(now_id); // add
+                now_id = null; // add
+            }
+            console.log(total_count);
+            console.log(count);
+        }
+
+        function addTable() {
+            var myTableDiv = document.getElementById("table");
+
+            var table = document.createElement('table');
+            table.classList.add("table");
+            table.classList.add("table-bordered");
+
+            var tableBody = document.createElement('tbody');
+            table.appendChild(tableBody);
+
+            var day = 1;
+            var date = new Date();
+            var month = date.getMonth();
+            // var monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            var monthList = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+            var monthToday = "";
+            if (month > 0) {
+                monthToday = monthList[month]
+            }
+            var monthShow = document.getElementById('monthName').innerText = monthToday;
+            for (var i = 0; i < 5; i++) {
+                var tr = document.createElement('tr');
+                tableBody.appendChild(tr);
+
+                for (var j = 0; j < 7; j++) {
+                    var input = document.createElement("input");
+                    var td = document.createElement('td');
+                    if (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11) {
+                        if (day == 32) {
+                            break;
+                        } else {
+                            td.id = "day" + day++;
+                            // add
+                            td.setAttribute("onclick", "table_click(this.id)")
+                            td.height = '100%';
+                            input.setAttribute("type", "button");
+                            input.setAttribute("data-toggle", "modal")
+                            input.setAttribute("data-target", "#modal1")
+                            input.classList.add("btn")
+                            // a.appendChild(td)
+                            td.appendChild(input)
+                            tr.appendChild(td);
+                        }
+                    } else if (month == 1) {
+                        if (day == 30) {
+                            break;
+                        } else {
+                            td.id = "day" + day++;
+                            td.height = '40';
+                            td.appendChild(document.createTextNode(" "))
+                            tr.appendChild(td);
+                        }
+                    } else {
+                        if (day == 31) {
+                            break;
+                        } else {
+                            td.id = "day" + day++;
+                            td.height = '40';
+                            td.appendChild(document.createTextNode(" "))
+                            tr.appendChild(td);
+                        }
+                    }
+                }
+            }
+            myTableDiv.appendChild(table);
+        }
+        addTable();
+
+        function choiceModal() {
+
+        }
+
+
+    </script>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
