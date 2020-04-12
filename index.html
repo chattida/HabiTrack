@@ -6,32 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv=" X-UA-Compatible" content="ie=edge">
 
-
-    <!-- <meta name="theme-color" content="#ffbe5b" />
-
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="ปัดปิ้ว | PadPiw">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <meta name="description" content="ปัดปิ้ว PadPiw เกมฝึกสมอง ประลองนิ้ว บริหารนิ้วมือ"> -->
-
     <title>HabiTrack</title>
 
-    <!-- iOS Homescreen icon -->
-
-
-    <!-- iOS Splash Screen -->
-
-
-    <!-- <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
-    <link rel="manifest" href="manifest.json"> -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Mali&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
     <style>
         body {
             background: white;
-            font-family: 'Mali', cursive;
+            font-family: 'Prompt', sans-serif;
             /* background-image: url("image/bg.png"); */
             background: #f7c9be;
             background-repeat: no-repeat;
@@ -86,7 +68,7 @@
 <body class="color-yellow fixed-top">
     <!-- navbar -->
     <nav class="navbar navbar-light">
-        <a class="navbar-brand text-white" data-toggle="modal" data-target="#modal2" href=".">
+        <a class="navbar-brand text-white" href=".">
             HABITRACK
         </a>
         <!-- <div>
@@ -205,8 +187,8 @@
                     <h5>เพิ่ม / แก้ไข เป้าหมาย</h5>
                 </div>
                 <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
+                    <div class="col-1"></div>
+                    <div class="col-10">
                         <input id="goal1" type="text" class="form-control mb-2">
                         <input id="goal2" type="text" class="form-control mb-2">
                         <input id="goal3" type="text" class="form-control mb-2">
@@ -214,7 +196,7 @@
                         <input id="goal5" type="text" class="form-control mb-2">
                         <input id="goal6" type="text" class="form-control mb-2">
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-1"></div>
                 </div>
                 <div class="modal-footer mt-3">
                     <button onclick="goalSave()" class="btn btn-danger" data-dismiss="modal">ปิด</button>
@@ -402,7 +384,7 @@
                     count -= 10;
                     check1 += 1;
                 } else {
-                    choice1.style.background = "#7FB6A1";
+                    choice1.style.background = "#99d7ae";
                     choice1.style.color = "white";
                     count += 10;
                     check1 += 1;
@@ -415,7 +397,7 @@
                     count -= 10;
                     check2 += 1;
                 } else {
-                    choice2.style.background = "#7FB6A1";
+                    choice2.style.background = "#99d7ae";
                     choice2.style.color = "white";
                     count += 10;
                     check2 += 1;
@@ -428,7 +410,7 @@
                     count -= 10;
                     check3 += 1;
                 } else {
-                    choice3.style.background = "#7FB6A1";
+                    choice3.style.background = "#99d7ae";
                     choice3.style.color = "white";
                     count += 10;
                     check3 += 1;
@@ -441,7 +423,7 @@
                     count -= 10;
                     check4 += 1;
                 } else {
-                    choice4.style.background = "#7FB6A1";
+                    choice4.style.background = "#99d7ae";
                     choice4.style.color = "white";
                     count += 10;
                     check4 += 1;
@@ -454,7 +436,7 @@
                     count -= 10;
                     check5 += 1;
                 } else {
-                    choice5.style.background = "#7FB6A1";
+                    choice5.style.background = "#99d7ae";
                     choice5.style.color = "white";
                     count += 10;
                     check5 += 1;
@@ -467,7 +449,7 @@
                     count -= 10;
                     check6 += 1;
                 } else {
-                    choice6.style.background = "#7FB6A1";
+                    choice6.style.background = "#99d7ae";
                     choice6.style.color = "white";
                     count += 10;
                     check6 += 1;
@@ -549,8 +531,15 @@
                             break;
                         } else {
                             td.id = "day" + day++;
-                            td.height = '40';
-                            td.appendChild(document.createTextNode(" "))
+                            // add
+                            td.setAttribute("onclick", "table_click(this.id)")
+                            td.height = '100%';
+                            input.setAttribute("type", "button");
+                            input.setAttribute("data-toggle", "modal")
+                            input.setAttribute("data-target", "#modal1")
+                            input.classList.add("btn")
+                            // a.appendChild(td)
+                            td.appendChild(input)
                             tr.appendChild(td);
                         }
                     } else {
@@ -558,8 +547,15 @@
                             break;
                         } else {
                             td.id = "day" + day++;
-                            td.height = '40';
-                            td.appendChild(document.createTextNode(" "))
+                            // add
+                            td.setAttribute("onclick", "table_click(this.id)")
+                            td.height = '100%';
+                            input.setAttribute("type", "button");
+                            input.setAttribute("data-toggle", "modal")
+                            input.setAttribute("data-target", "#modal1")
+                            input.classList.add("btn")
+                            // a.appendChild(td)
+                            td.appendChild(input)
                             tr.appendChild(td);
                         }
                     }
