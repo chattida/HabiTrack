@@ -8,6 +8,35 @@
 
     <title>HabiTrack</title>
 
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="HabiTrack">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon-180x180.png" />
+
+    <link href="/img/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/img/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+    <link rel="manifest" href="/manifest.json">
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
     <style>
@@ -295,6 +324,7 @@
         var selectArray = []
 
         window.onload = function() {
+            checkMonth()
             choiceLoad()
             setDataLayout()
             addTable()
@@ -308,9 +338,9 @@
                     data['day' + i] = []
                 }
                 localStorage.setItem('data', JSON.stringify(data))
-                console.log('setDataLayout done')
+                console.log('set data')
             } else {
-                console.log('don\'t setDataLayout')
+               
             }
         }   
 
@@ -319,9 +349,14 @@
             let data = JSON.parse(localStorage.getItem('data'))[value]
             let total_count = 0
             
-            for (let i = 0; i < data.length; i++) {
+            try {
+                for (let i = 0; i < data.length; i++) {
                 total_count += 10
+                }
+            } catch (error) {
+                console.log('no data')
             }
+            
 
             if (total_count == 10) {
                 color = "#bca8d3";
@@ -362,7 +397,21 @@
                 day = 30
             }
             return day
-        } 
+        }
+
+        
+        function checkMonth() {
+            let date = new Date()
+            let month = date.getMonth()
+            if (!localStorage.getItem('month')) {
+                localStorage.setItem('month', month)
+            } else {
+                let monthdata = localStorage.getItem('month')
+                if (monthdata != month) {
+                    localStorage.removeItem('data')
+                }
+            }
+        }
 
         function goalSave() {
             let goal1 = document.getElementById("goal1").value
@@ -380,7 +429,7 @@
                 goal6: goal6
             }
             localStorage.setItem('goal', JSON.stringify(date))
-            console.log('goalSave')
+            console.log('goal save')
             choiceLoad()
         }
 
@@ -393,9 +442,9 @@
                 document.getElementById("goal4").value = date.goal4
                 document.getElementById("goal5").value = date.goal5
                 document.getElementById("goal6").value = date.goal6
-                console.log('goalLoad')
+                console.log('goal load')
             } catch (error) {
-                console.log('can\'t load goal')
+                console.log('empty goal data')
             }
            
         }
@@ -409,9 +458,9 @@
                 document.getElementById("choice_4").innerText = date.goal4
                 document.getElementById("choice_5").innerText = date.goal5
                 document.getElementById("choice_6").innerText = date.goal6
-                console.log('choiceLoad')
+                console.log('load choice data')
             } catch (error) {
-                console.log('can\'t load choice')
+                console.log('empty choice data')
             }
             
         }
@@ -422,9 +471,7 @@
         }
 
         function setDayColor(clicked_id) {
-            console.log(clicked_id);
             color_id = document.getElementById(clicked_id)
-            console.log(color_id);
             if (total_count == 10) {
                 color_id.style.background = "#bca8d3";
             }
@@ -554,8 +601,6 @@
             }
             if (number == "close") {
                 // set data
-                console.log('total_count:', total_count);
-                console.log(selectArray)
                 let data = JSON.parse(localStorage.getItem('data'))
                 data[now_day] = selectArray
                 localStorage.setItem('data', JSON.stringify(data))
